@@ -13,30 +13,6 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 public class CoOccurrenceMatrixGenerator {
 	public static class MatrixGeneratorMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
-
-		// map method
-//		@Override
-//		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-//			//value = userid \t movie1: rating, movie2: rating...
-//			//key = movie1: movie2 value = 1
-//			String line = value.toString().trim();
-//			String[] user_movieRatings = line.split("\t");
-//			if (user_movieRatings.length != 2) {
-//				return;
-//			}
-//			String[] movie_ratings = user_movieRatings[1].split(",");
-//
-//			//{movie1:rating, movie2:rating..}
-//			for(int i = 0; i < movie_ratings.length; i++) {
-//				String movie1 = movie_ratings[i].trim().split(":")[0];
-//
-//				for(int j = 0; j < movie_ratings.length; j++) {
-//					String movie2 = movie_ratings[j].trim().split(":")[0];
-//					context.write(new Text(movie1 + ":" + movie2), new IntWritable(1));
-//				}
-//			}
-//
-//		}
 		@Override
 		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 			String line = value.toString().trim();
@@ -58,18 +34,6 @@ public class CoOccurrenceMatrixGenerator {
 	}
 
 	public static class MatrixGeneratorReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-		// reduce method
-//		@Override
-//		public void reduce(Text key, Iterable<IntWritable> values, Context context)
-//				throws IOException, InterruptedException {
-//			//key movie1:movie2 value = iterable<1, 1, 1>
-//			int sum = 0;
-//			while(values.iterator().hasNext()) {
-//				sum += values.iterator().next().get();
-//			}
-//
-//			context.write(key, new IntWritable(sum));
-//		}
 		@Override
 		public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
 			int sum = 0;
