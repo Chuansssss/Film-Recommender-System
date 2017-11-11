@@ -14,15 +14,6 @@ import java.io.IOException;
 public class Sum {
 
     public static class SumMapper extends Mapper<LongWritable, Text, Text, DoubleWritable> {
-
-        // map method
-//        @Override
-//        public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-//
-//            String[] line = value.toString().split("\t");
-//            context.write(new Text(line[0]), new DoubleWritable(Double.parseDouble(line[1])));
-//
-//        }
         @Override
         public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] line = value.toString().split("\t");
@@ -31,19 +22,6 @@ public class Sum {
     }
 
     public static class SumReducer extends Reducer<Text, DoubleWritable, Text, DoubleWritable> {
-        // reduce method
-//        @Override
-//        public void reduce(Text key, Iterable<DoubleWritable> values, Context context)
-//                throws IOException, InterruptedException {
-//
-//            //user:movie relation
-//            double sum = 0;
-//            for(DoubleWritable value: values) {
-//                sum += value.get();
-//            }
-//
-//            context.write(key, new DoubleWritable(sum));
-//        }
         @Override
         public void reduce(Text key, Iterable<DoubleWritable> values, Context context) throws IOException, InterruptedException {
             double sum = 0;
