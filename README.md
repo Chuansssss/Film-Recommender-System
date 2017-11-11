@@ -47,7 +47,7 @@ First we have to enter the directory of the Java source code. And then follow th
 ```shell
 hdfs dfs -mkdir /input
 
-hdfs dfs -put input/* /input  # 把user 相关的rating 文件上传
+hdfs dfs -put input/* /input  # upload the source input files
 
 hdfs dfs -rm -r /dataDividedByUser
 
